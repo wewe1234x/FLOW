@@ -1,0 +1,15 @@
+```mermaid
+flowchart LR
+    %% 定義兩個主要區塊
+    subgraph Scaler[Scaler]
+        S1[開始] --> S2{if 90 == 0?}
+        S2 -- 否 不允许更新指令 --> S2
+        S2 -- 是 可以更新指令--> S3[寫指令到 C0 ~ CF]
+        S3 --> S4[set B0 = 1]
+        S4 --> S5{if 90 == 1?}
+        S5 --> S6{指令類型?}
+        S6 -- SET --> S7[set B0 = 0]
+        S6 -- GET -->S9[讀取 A0 ~ AF]
+        S9 --> S7
+        S7 --> S2
+    end
